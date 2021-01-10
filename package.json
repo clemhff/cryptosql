@@ -1,0 +1,25 @@
+{
+  "name": "cryptosql",
+  "version": "0.0.1",
+  "description": "put crypto data in postgres",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clemhff/cryptosql.git"
+  },
+  "author": "Clement Hoff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clemhff/cryptosql/issues"
+  },
+  "homepage": "https://github.com/clemhff/cryptosql#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "node-cron": "^2.0.3",
+    "pg": "^8.5.1"
+  }
+}
