@@ -34,3 +34,18 @@ exports.connId = {
   port: 1234
 }
 ```
+## PM2 to automate start  
+
+```sudo npm install pm2@latest -g
+touch start.sh
+nano start.sh
+```
+
+Insert  
+```#!/bin/bash
+cd /path/to/project
+npm start  
+
+```
+```pm2 start start.sh --name cryptosql --exp-backoff-restart-delay=100
+pm2 save
