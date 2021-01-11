@@ -1,6 +1,7 @@
 const cron = require('node-cron');
 const {insertNewTicker} = require('./insertNewTicker');
 
+//insertNewTicker('adadt');
 
 cron.schedule("* * * * *", async function() {
 

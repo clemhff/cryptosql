@@ -32,22 +32,53 @@ where table_name =  '${table}' and column_name='${column}'
 `
 
 
-exports.createTableADA = () =>`
-  CREATE TABLE adausdt (
-    id SERIAL  PRIMARY KEY,
-    timestamp INTEGER,
-    open NUMERIC(12, 8),
-    high NUMERIC(12, 8),
-    low NUMERIC(12, 8),
-    close NUMERIC(12, 8),
-    volume NUMERIC(20, 8),
-    quoteasset NUMERIC(20, 8),
-    trade INTEGER,
-    takerbuybase NUMERIC(20, 8),
-    takerbuyquote NUMERIC(20, 8),
-    UNIQUE(timestamp)
-  );
-`
+exports.createTable = (table) => {
+  let query = null;
+  switch (table) {
+    case 'adausdt':
+      query = `CREATE TABLE adausdt (
+                  id SERIAL  PRIMARY KEY,
+                  timestamp BIGINT,
+                  open NUMERIC(12, 8),
+                  high NUMERIC(12, 8),
+                  low NUMERIC(12, 8),
+                  close NUMERIC(12, 8),
+                  volume NUMERIC(20, 8),
+                  quoteasset NUMERIC(20, 8),
+                  trade INTEGER,
+                  takerbuybase NUMERIC(20, 8),
+                  takerbuyquote NUMERIC(20, 8),
+                  UNIQUE(timestamp)
+              );`
+      break;
+    default:
+      console.log(`Sorry, no parameter for this table`);
+  }
+  return query;
+}
+
+exports.firstTicker = (table) => {
+  letfirst = null;
+  switch (table) {
+    case 'adausdt':
+      first = {
+        timestamp : 1524002400000,
+        open : 0.25203000,
+        high : 0.25203000,
+        low : 0.25150000,
+        close : 0.25150000,
+        volume : 27549.50000000,
+        quote_asset: 6934.46322360,
+        trade : 21,
+        tbb : 297.68000000,
+        tbq : 74.99452240
+      }
+      break;
+    default:
+      console.log(`Sorry, no first ticker`);
+  }
+  return first
+}
 
 exports.insertTicker =  (table, timestamp, open, high, low, close, volume, quoteasset, trade, takerbuybase,takerbuyquote) => `
 INSERT INTO ${table}(timestamp, open, high, low, close, volume, quoteasset, trade, takerbuybase,takerbuyquote)
