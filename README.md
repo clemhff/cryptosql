@@ -50,6 +50,5 @@ npm start
 
 ```
 ```
-pm2 start start.sh --name cryptosql --exp-backoff-restart-delay=100
-pm2 save
-```
+pm2 start start.sh --name cryptosql --exp-backoff-restart-delay=100 --watch
+pm2 save```
