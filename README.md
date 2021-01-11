@@ -10,11 +10,11 @@ CREATE DATABASE name
 ```
 
 ### NodeJS needs to be installed
-To verify : 
-\n ```node -v```
+To verify : \
+ ```node -v```
 
-## install npm dependencies 
-\n```npm install```
+## install npm dependencies \
+```npm install```
 
 ## env variable
 ```mkdir env
