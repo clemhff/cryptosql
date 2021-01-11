@@ -25,7 +25,8 @@ nano dbId.js
 
 Insert connection variables
 
-```exports.connId = {
+```
+exports.connId = {
   user: 'user',
   host: '127.0.0.1',
   database: 'database_name',
