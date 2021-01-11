@@ -22,10 +22,11 @@ exports.insertNewTicker = async (symbol) => {
     if (tableExist.rows.length === 0) {
 
       console.log('Table doesn\'t exist');
-      const createTable = await pool.query(q.createTable(symbol));
-      const f = await q.firstTicker(symbol);
+      const createTable = await pool.query(q.createTable(symbol)); // create table
+      const createIndex= await pool.query(q.createIndex(symbol)); // create index
+      const f = await q.firstTicker(symbol); // 1st ticker objet
       console.log(JSON.stringify(f));
-      const createFirstTicker = await pool.query(q.insertTicker(symbol, f.timestamp, f.open, f.high, f.low, f.close, f.volume, f.quote_asset, f.trade, f.tbb, f.tbq));
+      const createFirstTicker = await pool.query(q.insertTicker(symbol, f.timestamp, f.open, f.high, f.low, f.close, f.volume, f.quote_asset, f.trade, f.tbb, f.tbq)); // insert 1st ticker
 
     }
     else {

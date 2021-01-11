@@ -57,6 +57,19 @@ exports.createTable = (table) => {
   return query;
 }
 
+exports.createIndex= (table) => {
+  let query = null;
+  switch (table) {
+    case 'adausdt':
+      query = `CREATE INDEX idx_timestamp
+               ON adausdt(timestamp);`
+      break;
+    default:
+      console.log(`Sorry, no parameter for this index`);
+  }
+  return query;
+}
+
 exports.firstTicker = (table) => {
   letfirst = null;
   switch (table) {
