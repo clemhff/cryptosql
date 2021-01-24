@@ -32,12 +32,20 @@ exports.insertNewTicker = async (symbol) => {
 
     }
     else {
+
       //// add new data workflow
       const lastTimestamp = await pool.query(q.lastTicker(symbol)); // last entry in database
-      const {data}= await axios.get(`https://api.binance.com/api/v3/klines?symbol=ADAUSDT&interval=1m&startTime=${parseInt(lastTimestamp.rows[0].max ,10)+60000}&limit=1`); // get data from binance
+      if(	parseInt(lastTimestamp.rows[0].max ,10)+120000 <= 	new Date().getTime() ) {
 
-      const addData = await pool.query(q.insertTicker(symbol, data[0][0], data[0][1], data[0][2], data[0][3], data[0][4], data[0][5], data[0][7], data[0][8], data[0][9],data[0][10])); //insert data in the database
-      console.log(data[0][0]);
+        const {data}= await axios.get(`https://api.binance.com/api/v3/klines?symbol=ADAUSDT&interval=1m&startTime=${parseInt(lastTimestamp.rows[0].max ,10)+60000}&limit=1`); // get data from binance
+
+        const addData = await pool.query(q.insertTicker(symbol, data[0][0], data[0][1], data[0][2], data[0][3], data[0][4], data[0][5], data[0][7], data[0][8], data[0][9],data[0][10])); //insert data in the database
+        console.log(data[0][0]);
+      }
+      else {
+        console.log( 'The ' + symbol +' symbol is up to date')
+
+      }
     }
 
   } catch (error) {
