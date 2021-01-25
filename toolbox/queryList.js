@@ -51,6 +51,22 @@ exports.createTable = (table) => {
                   UNIQUE(timestamp)
               );`
       break;
+    case 'ethusdt':
+      query = `CREATE TABLE ethusdt (
+                  id SERIAL  PRIMARY KEY,
+                  timestamp BIGINT,
+                  open NUMERIC(12, 8),
+                  high NUMERIC(12, 8),
+                  low NUMERIC(12, 8),
+                  close NUMERIC(12, 8),
+                  volume NUMERIC(20, 8),
+                  quoteasset NUMERIC(20, 8),
+                  trade INTEGER,
+                  takerbuybase NUMERIC(20, 8),
+                  takerbuyquote NUMERIC(20, 8),
+                  UNIQUE(timestamp)
+              );`
+      break;
     default:
       console.log(`Sorry, no parameter for this table`);
   }
@@ -63,6 +79,10 @@ exports.createIndex= (table) => {
     case 'adausdt':
       query = `CREATE INDEX idx_timestamp
                ON adausdt(timestamp);`
+      break;
+    case 'ethusdt':
+      query = `CREATE INDEX idx_${table}_timestamp
+               ON ethusdt(timestamp);`
       break;
     default:
       console.log(`Sorry, no parameter for this index`);
@@ -87,7 +107,21 @@ exports.firstTicker = (table) => {
         tbq : 74.99452240
       }
       break;
-    default:
+    case 'ethusdt':
+      first = {
+        timestamp : 1502942400000,
+        open : 301.13000000,
+        high : 301.13000000,
+        low : 301.13000000,
+        close : 301.13000000,
+        volume : 0.42643000,
+        quote_asset: 128.41086590,
+        trade : 2,
+        tbb : 0.42643000,
+        tbq : 128.41086590
+      }
+      break;
+  default:
       console.log(`Sorry, no first ticker`);
   }
   return first
