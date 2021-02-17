@@ -4,6 +4,6 @@ const {insertNewTicker} = require('./insertNewTicker');
 
 let timerId = setInterval(() => {
   console.log("running a task every 0.9s");
-  insertNewTicker('adausdt', 70000);
-  insertNewTicker('ethusdt', 80000);
+  insertNewTicker('adausdt', 62000);
+  insertNewTicker('ethusdt', 64000);
 }, 900);
